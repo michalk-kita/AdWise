@@ -1,0 +1,134 @@
+---
+interface Props {}
+---
+
+<section class="team-big">
+  <div class="team-big__frame">
+    <!-- Layer 1: Background photo (full office scene) -->
+    <img
+      src="/images/team-photo-bg.png"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="team-big__bg"
+      aria-hidden="true"
+    />
+
+    <!-- Layer 2: Right decorative arrow with halftone dots -->
+    <div class="team-big__decor team-big__decor--right" aria-hidden="true">
+      <img src="/images/arrow-decor-right.svg" alt="" loading="lazy" decoding="async" />
+    </div>
+
+    <!-- Layer 3: Left decorative arrow with halftone dots (horizontally flipped) -->
+    <div class="team-big__decor team-big__decor--left" aria-hidden="true">
+      <img src="/images/arrow-decor-left.svg" alt="" loading="lazy" decoding="async" />
+    </div>
+
+    <!-- Layer 4: Cut-out people (transparent background) -->
+    <img
+      src="/images/team-photo-main.png"
+      alt="Zespół AdWise"
+      loading="lazy"
+      decoding="async"
+      class="team-big__people"
+    />
+  </div>
+
+  <!-- Dark bar at bottom -->
+  <div class="team-big__bar"></div>
+</section>
+
+<style>
+  .team-big {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .team-big__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440 / 806;
+    overflow: hidden;
+  }
+
+  /* Layer 1: Background photo */
+  .team-big__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Decorative arrows */
+  .team-big__decor {
+    position: absolute;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .team-big__decor img {
+    display: block;
+    max-width: none;
+  }
+
+  /* Right arrow: container at left:837, top:0, 603×739 within 1440×806
+     SVG inside: 637×1248 at left:-0.79, top:-257 */
+  .team-big__decor--right {
+    left: 58.125%;
+    top: 0;
+    width: 41.875%;
+    height: 91.687%;
+  }
+
+  .team-big__decor--right img {
+    position: absolute;
+    left: -0.131%;
+    top: -34.776%;
+    width: 105.712%;
+    height: 168.876%;
+  }
+
+  /* Left arrow: container at left:0, top:92.38, 452×554 within 1440×806
+     SVG inside: 478×936 at left:-0.59, top:-192.75, then horizontally flipped */
+  .team-big__decor--left {
+    left: 0;
+    top: 11.464%;
+    width: 31.406%;
+    height: 68.735%;
+    transform: scaleX(-1);
+  }
+
+  .team-big__decor--left img {
+    position: absolute;
+    left: -0.131%;
+    top: -34.801%;
+    width: 105.702%;
+    height: 169.043%;
+  }
+
+  /* Layer 4: Cut-out people */
+  .team-big__people {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Dark bar at bottom */
+  .team-big__bar {
+    width: 100%;
+    height: 62px;
+    background: var(--color-bg-primary);
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .team-big__bar {
+      height: 32px;
+    }
+  }
+</style>

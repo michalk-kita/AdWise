@@ -1,0 +1,439 @@
+---
+interface Props {}
+
+const categories = [
+  { id: 'b2b', label: 'Sprzedaż B2B', count: 6 },
+  { id: 'it', label: 'IT', count: 4 },
+  { id: 'producent', label: 'Producent', count: 3 },
+  { id: 'dystrybucja', label: 'Dystrybucja', count: 2 },
+  { id: 'pozostale', label: 'Pozostałe', count: 1 },
+];
+
+const brands = [
+  { logo: '/images/logos/logo-14.svg', name: 'Duon', desc: 'Polski software house dostarczający oprogramowanie dla firm.', cat: 'b2b' },
+  { logo: '/images/logos/logo-02-sagra.svg', name: 'Seedea', desc: 'Polski software house dostarczający oprogramowanie dla firm.', cat: 'b2b' },
+  { logo: '/images/logos/logo-15.svg', name: 'Exclusive', desc: 'Polski software house dostarczający oprogramowanie dla firm.', cat: 'it' },
+  { logo: '/images/logos/logo-16.svg', name: 'Burgopak', desc: 'W pełni otwarta i przetestowana technologia e-commerce przyszłości.', cat: 'b2b' },
+  { logo: '/images/logos/logo-01-aifo.svg', name: 'AiFO', desc: 'Polski software house zajmujący się eCommerce.', cat: 'it' },
+  { logo: '/images/logos/logo-02-sagra.svg', name: 'Sagra Technology', desc: 'Polski software house zajmujący się eCommerce.', cat: 'it' },
+  { logo: '/images/logos/logo-03-plastipol.svg', name: 'Plastipol', desc: 'Polski software house zajmujący się eCommerce.', cat: 'producent' },
+  { logo: '/images/logos/logo-04-zlomnica.svg', name: 'Złomnica', desc: 'Polski software house zajmujący się eCommerce.', cat: 'b2b' },
+  { logo: '/images/logos/logo-05-weilandt.svg', name: 'Weilandt', desc: 'Producent oprogramowania monitoringu i lokalizacji GPS pojazdów firmowych oraz prywatnych.', cat: 'producent' },
+  { logo: '/images/logos/logo-06-gim.svg', name: 'GIM', desc: 'Czołowy producent wysokiej jakości technik zamocowań w Polsce i Europie Środkowo-Wschodniej.', cat: 'producent' },
+  { logo: '/images/logos/logo-07-pagra.svg', name: 'Pagra', desc: 'Jeden z największych producentów systemów wentylacyjnych w Europie.', cat: 'dystrybucja' },
+  { logo: '/images/logos/logo-12-dlafirm.svg', name: 'Ciasta DlaFirm', desc: 'Producent pięknych lamp i oświetlenia dla domu oraz biura.', cat: 'pozostale' },
+  { logo: '/images/logos/logo-09.svg', name: 'MM Machinery', desc: 'Producent pięknych lamp i oświetlenia dla domu oraz biura.', cat: 'b2b' },
+  { logo: '/images/logos/logo-10.png', name: 'NSP', desc: 'Producent pięknych lamp i oświetlenia dla domu oraz biura.', cat: 'dystrybucja' },
+  { logo: '/images/logos/logo-11-zasob.svg', name: 'Dakri', desc: 'Producent pięknych lamp i oświetlenia dla domu oraz biura.', cat: 'b2b' },
+  { logo: '/images/logos/logo-13.svg', name: 'Sente', desc: 'Producent pięknych lamp i oświetlenia dla domu oraz biura.', cat: 'it' },
+];
+
+const totalBrands = 39;
+const initialVisible = 16;
+---
+
+<section class="brands">
+  <div class="brands__container">
+    <!-- White box: header + filters + grid -->
+    <div class="brands__box">
+      <!-- Title -->
+      <div class="brands__title-area">
+        <h2 class="text-h2 text-text-primary text-center">
+          AdWise® wspiera marketing<br />[X] biznesów B2B
+        </h2>
+      </div>
+
+      <!-- Filter tabs: white bg inside gray header -->
+      <div class="brands__filters">
+        <div class="brands__filters-row">
+          {categories.map((cat, i) => (
+            <button
+              class:list={['brands__tab', { 'brands__tab--active': i === 0 }]}
+              data-cat={cat.id}
+            >
+              {i === 0 && (
+                <svg class="brands__tab-check" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
+              <span class="brands__tab-label">{cat.label}</span>
+              {i > 0 && <span class="brands__tab-count">({cat.count})</span>}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Logo grid: internal borders only -->
+      <div class="brands__grid" id="brandsGrid">
+        {brands.map((brand) => (
+          <div class="brands__card" data-cat={brand.cat}>
+            <div class="brands__logo">
+              <img src={brand.logo} alt={brand.name} loading="lazy" decoding="async" />
+            </div>
+            <p class="brands__desc">{brand.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- "Zobacz wszystkie marki" tab protruding from bottom of white box -->
+    <div class="brands__bottom-tab">
+      <button class="brands__see-all" id="brandsToggle">
+        <span class="brands__see-all-text">Zobacz wszystkie marki</span>
+      </button>
+      <span class="brands__counter">
+        <span id="brandsVisible">{initialVisible}</span>/<span>{totalBrands}</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initBrandLogos() {
+    const grid = document.getElementById('brandsGrid');
+    const toggle = document.getElementById('brandsToggle');
+    const visibleEl = document.getElementById('brandsVisible');
+    if (!grid || !toggle || !visibleEl) return;
+
+    let expanded = true;
+    const cards = grid.querySelectorAll('.brands__card');
+
+    // Filter by category
+    const tabs = document.querySelectorAll('.brands__tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('brands__tab--active'));
+        tab.classList.add('brands__tab--active');
+
+        tabs.forEach(t => {
+          const check = t.querySelector('.brands__tab-check');
+          if (check) check.remove();
+        });
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.classList.add('brands__tab-check');
+        svg.setAttribute('width', '16');
+        svg.setAttribute('height', '16');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', 'none');
+        svg.innerHTML = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        tab.prepend(svg);
+
+        const cat = tab.dataset.cat;
+        let count = 0;
+        cards.forEach(card => {
+          const cardCat = (card as HTMLElement).dataset.cat;
+          const matches = cat === 'b2b' || cardCat === cat;
+          (card as HTMLElement).style.display = matches ? '' : 'none';
+          if (matches) count++;
+        });
+        visibleEl.textContent = String(count);
+      });
+    });
+
+    // Expand/collapse
+    toggle.addEventListener('click', () => {
+      expanded = !expanded;
+      const box = document.querySelector('.brands__box') as HTMLElement;
+      if (expanded) {
+        box.classList.remove('brands__box--collapsed');
+        toggle.querySelector('.brands__see-all-text')!.textContent = 'Zobacz wszystkie marki';
+        const count = grid.querySelectorAll('.brands__card:not([style*="display: none"])').length;
+        visibleEl.textContent = String(count);
+      } else {
+        box.classList.add('brands__box--collapsed');
+        toggle.querySelector('.brands__see-all-text')!.textContent = 'Zobacz wszystkie marki';
+        visibleEl.textContent = '8';
+      }
+    });
+  }
+  initBrandLogos();
+</script>
+
+<style>
+  /* Section: gray background */
+  .brands {
+    background: var(--color-bg-secondary);
+    padding: 50px;
+  }
+
+  .brands__container {
+    max-width: 1340px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* White box containing everything */
+  .brands__box {
+    background: var(--color-bg-light);
+    width: 100%;
+  }
+
+  .brands__box--collapsed .brands__grid {
+    max-height: 340px;
+    overflow: hidden;
+  }
+
+  /* Title */
+  .brands__title-area {
+    padding: 50px 50px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Filter tabs */
+  .brands__filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+  }
+
+  .brands__filters-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brands__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 8px;
+    border: 1.5px solid #7878a5;
+    background: var(--color-bg-light);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.04px;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+
+  .brands__tab--active {
+    border-color: var(--color-bg-primary-hover);
+    font-weight: 700;
+  }
+
+  .brands__tab--active .brands__tab-label {
+    color: var(--color-text-accent);
+  }
+
+  .brands__tab-check {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--color-text-accent);
+  }
+
+  .brands__tab-count {
+    color: #7878a5;
+  }
+
+  .brands__tab:hover {
+    border-color: var(--color-bg-primary-hover);
+  }
+
+  /* Grid: internal borders only (no outer border) */
+  .brands__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .brands__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 24px;
+    gap: 16px;
+    position: relative;
+  }
+
+  /* Right border on all except last column */
+  .brands__card:not(:nth-child(4n))::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--color-separator);
+  }
+
+  /* Bottom border on all except last row — handled via top border on non-first rows */
+  .brands__card:nth-child(n+5)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-separator);
+  }
+
+  .brands__card--hidden {
+    display: none;
+  }
+
+  .brands__logo {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brands__logo img {
+    max-height: 60px;
+    max-width: 180px;
+    object-fit: contain;
+  }
+
+  .brands__desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    max-width: 240px;
+  }
+
+  /* Bottom tab: protrudes from white box with chamfered top corners */
+  .brands__bottom-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--color-bg-light);
+    padding: 12px 60px 16px;
+    margin: 0 auto;
+    max-width: 1340px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 58px) 100%, 58px 100%);
+  }
+
+  .brands__see-all {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--color-text-accent);
+    text-decoration: underline;
+    font-weight: 700;
+    padding: 0;
+  }
+
+  .brands__see-all:hover {
+    color: var(--color-bg-accent-hover);
+  }
+
+  .brands__counter {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.4;
+    color: #7878a5;
+  }
+
+  .brands__counter span:last-child {
+    color: #161627;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .brands {
+      padding: 20px;
+    }
+
+    .brands__title-area {
+      padding: 32px 20px 0;
+    }
+
+    .brands__filters {
+      padding: 32px 0;
+    }
+
+    .brands__filters-row {
+      gap: 8px;
+    }
+
+    .brands__tab {
+      min-height: 36px;
+      font-size: 14px;
+      padding: 0 6px;
+    }
+
+    .brands__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brands__card:not(:nth-child(4n))::after {
+      display: none;
+    }
+
+    .brands__card:nth-child(n+5)::before {
+      display: none;
+    }
+
+    /* Mobile: 2 columns — right border on odd cards */
+    .brands__card:nth-child(odd)::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: var(--color-separator);
+      display: block;
+    }
+
+    /* Mobile: top border on row 2+ (card 3+) */
+    .brands__card:nth-child(n+3)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--color-separator);
+      display: block;
+    }
+
+    .brands__card {
+      padding: 24px 16px;
+    }
+
+    .brands__logo {
+      height: 48px;
+    }
+
+    .brands__logo img {
+      max-height: 48px;
+      max-width: 140px;
+    }
+
+    .brands__desc {
+      font-size: 13px;
+    }
+
+    .brands__bottom-tab {
+      padding: 12px 24px 16px;
+      gap: 12px;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 32px) 100%, 32px 100%);
+    }
+
+    .brands__see-all {
+      font-size: 16px;
+    }
+
+    .brands__counter {
+      font-size: 16px;
+    }
+  }
+</style>

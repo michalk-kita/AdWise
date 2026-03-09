@@ -1,0 +1,124 @@
+---
+interface Props {
+  logos?: { src: string; alt: string; width: number; height: number }[];
+}
+
+const defaultLogos = [
+  { src: "/images/logos/logo-01-aifo.svg", alt: "AIFO", width: 97, height: 41 },
+  { src: "/images/logos/logo-02-sagra.svg", alt: "Sagra Technology", width: 138, height: 24 },
+  { src: "/images/logos/logo-03-plastipol.svg", alt: "Plastipol", width: 118, height: 14 },
+  { src: "/images/logos/logo-04-zlomnica.svg", alt: "Zlomnica", width: 138, height: 26 },
+  { src: "/images/logos/logo-05-weilandt.svg", alt: "Weilandt", width: 102, height: 29 },
+  { src: "/images/logos/logo-06-gim.svg", alt: "GIM", width: 107, height: 41 },
+  { src: "/images/logos/logo-07-pagra.svg", alt: "Pagra", width: 130, height: 32 },
+  { src: "/images/logos/logo-08-warstwa.svg", alt: "Warstwa", width: 138, height: 20 },
+  { src: "/images/logos/logo-09.svg", alt: "Partner", width: 109, height: 41 },
+  { src: "/images/logos/logo-10.png", alt: "Partner", width: 117, height: 44 },
+  { src: "/images/logos/logo-11-zasob.svg", alt: "Partner", width: 115, height: 36 },
+  { src: "/images/logos/logo-12-layer1.svg", alt: "DlaFirm", width: 106, height: 32 },
+  { src: "/images/logos/logo-13.svg", alt: "Partner", width: 155, height: 16 },
+  { src: "/images/logos/logo-14.svg", alt: "Partner", width: 48, height: 51 },
+  { src: "/images/logos/logo-15.svg", alt: "Partner", width: 88, height: 46 },
+  { src: "/images/logos/logo-16.svg", alt: "Partner", width: 121, height: 37 },
+];
+
+const { logos = defaultLogos } = Astro.props;
+---
+
+<section class="logo-carousel bg-(--color-bg-light) py-4 overflow-hidden">
+  <div class="logo-carousel__track">
+    {/* First set */}
+    <div class="logo-carousel__slide">
+      {logos.map((logo) => (
+        <div class="logo-carousel__item">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+    {/* Duplicate for seamless loop */}
+    <div class="logo-carousel__slide" aria-hidden="true">
+      {logos.map((logo) => (
+        <div class="logo-carousel__item">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-carousel {
+    --gap: 40px;
+    --duration: 30s;
+  }
+
+  @media (min-width: 768px) {
+    .logo-carousel {
+      --gap: 80px;
+    }
+  }
+
+  .logo-carousel__track {
+    display: flex;
+    width: max-content;
+    animation: scroll var(--duration) linear infinite;
+  }
+
+  .logo-carousel__slide {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    padding-right: var(--gap);
+  }
+
+  .logo-carousel__item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 36px;
+  }
+
+  .logo-carousel__item img {
+    max-height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  @media (min-width: 768px) {
+    .logo-carousel__item {
+      height: 52px;
+    }
+    .logo-carousel__item img {
+      max-height: 52px;
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-carousel__track {
+      animation-play-state: paused;
+    }
+  }
+</style>

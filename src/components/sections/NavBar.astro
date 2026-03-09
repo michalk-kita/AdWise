@@ -1,0 +1,106 @@
+---
+interface Props {}
+
+const navLinks = [
+  { label: "O nas", href: "/o-nas", hasDropdown: true },
+  { label: "Usługi", href: "/uslugi", hasDropdown: true },
+  { label: "Podcast", href: "/podcast", hasDropdown: false },
+  { label: "Blog", href: "/blog", hasDropdown: false },
+  { label: "Portfolio", href: "/portfolio", hasDropdown: false },
+];
+---
+
+<header>
+  <!-- Top Bar -->
+  <div class="w-full bg-bg-primary flex items-center justify-center gap-[10px] py-[6px] border border-black">
+    <span class="font-body text-text-light text-[14px] leading-normal font-medium">
+      JESTEŚMY CZĘŚCIĄ
+    </span>
+    <img src="/Top Bar Spółki.svg" alt="Grupa spółek" class="w-[155px]" />
+  </div>
+
+  <!-- Navigation -->
+  <nav class="w-full bg-bg-light flex items-center justify-between px-[20px] md:px-[50px] py-[14px] md:py-[20px] border-b border-bg-secondary">
+    <!-- Logo -->
+    <a href="/" class="shrink-0">
+      <img src="/Logo.svg" alt="AdWise" class="h-[20px] md:h-[26px] w-auto" />
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-[29px]">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="text-nav-link font-medium text-text-primary hover:text-text-accent transition-colors flex items-center gap-[10px]">
+            {link.label}
+            {link.hasDropdown && (
+              <img src="/Dropdown.svg" alt="" class="w-[10px] h-[5px]" />
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop right side -->
+    <div class="hidden md:flex items-center gap-[30px]">
+      <!-- Language switcher -->
+      <button class="text-nav-link font-medium text-text-primary flex items-center gap-[10px]">
+        PL
+        <img src="/Dropdown.svg" alt="" class="w-[10px] h-[5px]" />
+      </button>
+
+      <!-- CTA Button -->
+      <a
+        href="/kontakt"
+        class="inline-flex items-center gap-[10px] bg-[#099D45] hover:bg-[#078a3b] transition-colors rounded-[300px] px-[22px] py-[12px] text-nav-link text-text-light whitespace-nowrap"
+      >
+        Zbuduj kampanię
+        <img src="/Arrow Right.svg" alt="" class="w-6 h-6" />
+      </a>
+    </div>
+
+    <!-- Mobile right side -->
+    <div class="flex md:hidden items-center gap-3 ml-auto">
+      <!-- Mobile CTA Button -->
+      <a
+        href="/kontakt"
+        class="inline-flex items-center justify-center bg-[#099D45] hover:bg-[#078a3b] transition-colors rounded-full px-[12px] py-[10px] text-[12px] font-normal text-text-light whitespace-nowrap"
+      >
+        Zbuduj kampanię
+      </a>
+
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="w-7 h-7" aria-label="Menu">
+        <img src="/xmark.svg" alt="" class="w-7 h-7" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden w-full bg-bg-light border-t border-separator px-[20px] py-6">
+    <ul class="flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="text-nav-link text-text-primary flex items-center justify-between">
+            {link.label}
+            {link.hasDropdown && (
+              <img src="/Dropdown.svg" alt="" class="w-[10px] h-[5px]" />
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <!-- Mobile language switcher -->
+    <button class="text-nav-link text-text-primary flex items-center gap-[10px] mt-6 pt-4 border-t border-separator">
+      PL
+      <img src="/Dropdown.svg" alt="" class="w-[10px] h-[5px]" />
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>

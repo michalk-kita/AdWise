@@ -1,0 +1,21 @@
+{
+  "heading": "Marketing B2B wymaga innego podejścia niż B2C",
+  "description": "Klient biznesowy to nie konsument – w inny sposób podejmuje decyzje o zakupie, na inne aspekty zwraca uwagę, inaczej postrzega wartość oferty. Marketing B2B musi brać pod uwagę te różnice, by skutecznie realizować wyznaczone cele. Dlatego opracowaliśmy autorski proces, który łączy cele sprzedażowe z potrzebami klientów B2B i dostarcza im to, czego oczekują, wtedy, kiedy tego potrzebują.",
+  "subheading": "Jakie są najważniejsze różnice między marketingiem B2B a B2C?",
+  "b2cItems": [
+    { "text": "Krótki proces decyzyjny" },
+    { "text": "Najczęściej jeden konsument końcowy" },
+    { "text": "Wybory bywają emocjonalne" },
+    { "text": "Konwersja potrzebuje kilku punktów styku" },
+    { "text": "Bazuje na dobrym zrozumieniu osoby" },
+    { "text": "Content marketing powinien budzić emocje" }
+  ],
+  "b2bItems": [
+    { "text": "Długi proces decyzyjny" },
+    { "text": "Wielu decydentów po stronie klienta" },
+    { "text": "Wybory bazują na logice" },
+    { "text": "Wymaga budowania wielu punktów styku" },
+    { "text": "Bazuje na dobrym zrozumieniu firmy i decydentów" },
+    { "text": "Content marketing musi wnosić wartość" }
+  ]
+}

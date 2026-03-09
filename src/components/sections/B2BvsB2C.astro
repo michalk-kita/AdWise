@@ -1,0 +1,404 @@
+---
+import { reader } from '../../lib/keystatic';
+
+interface Props {}
+
+const data = await reader.singletons.b2bVsB2c.read();
+
+const heading = data?.heading ?? 'Marketing B2B wymaga innego podejścia niż B2C';
+const description = data?.description ?? 'Klient biznesowy to nie konsument – w inny sposób podejmuje decyzje o zakupie, na inne aspekty zwraca uwagę, inaczej postrzega wartość oferty. Marketing B2B musi brać pod uwagę te różnice, by skutecznie realizować wyznaczone cele. Dlatego opracowaliśmy autorski proces, który łączy cele sprzedażowe z potrzebami klientów B2B i dostarcza im to, czego oczekują, wtedy, kiedy tego potrzebują.';
+const subheading = data?.subheading ?? 'Jakie są najważniejsze różnice między marketingiem B2B a B2C?';
+
+const defaultB2cItems = [
+  "Krótki proces decyzyjny",
+  "Najczęściej jeden konsument końcowy",
+  "Wybory bywają emocjonalne",
+  "Konwersja potrzebuje kilku punktów styku",
+  "Bazuje na dobrym zrozumieniu osoby",
+  "Content marketing powinien budzić emocje",
+];
+
+const defaultB2bItems = [
+  "Długi proces decyzyjny",
+  "Wielu decydentów po stronie klienta",
+  "Wybory bazują na logice",
+  "Wymaga budowania wielu punktów styku",
+  "Bazuje na dobrym zrozumieniu firmy i decydentów",
+  "Content marketing musi wnosić wartość",
+];
+
+const b2cTexts = data?.b2cItems?.map((item) => item.text) ?? defaultB2cItems;
+const b2bTexts = data?.b2bItems?.map((item) => item.text) ?? defaultB2bItems;
+
+const b2cIcons = ["bolt", "profile", "emoji-blink", "dot-arrow", "fingerprint", "emoji-happy"];
+const b2bIcons = ["slow-mode", "community", "brain", "map", "shop", "star"];
+---
+
+<section class="w-full bg-bg-light relative overflow-hidden">
+  <!-- Molecule background - centered on section -->
+  <div class="molecule-bg">
+    <div class="molecule-bg__inner">
+      <img
+        src="/images/molecule-ellipse-v.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="molecule-bg__v"
+      />
+      <img
+        src="/images/molecule-ellipse-h.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="molecule-bg__h"
+      />
+    </div>
+  </div>
+
+  <div class="px-[20px] md:px-[50px] py-[60px] md:py-[112px] relative">
+    <div class="mx-auto max-w-[1340px] flex flex-col items-center gap-[50px] md:gap-[80px]">
+      <!-- Top text block -->
+      <div class="flex flex-col gap-[20px] text-center w-full max-w-[660px]">
+        <h2 class="text-h2 text-text-primary">{heading}</h2>
+        <p class="text-paragraph text-text-primary leading-[1.5]">{description}</p>
+      </div>
+
+      <!-- Sub-heading + Comparison -->
+      <div class="flex flex-col items-center gap-[32px] w-full">
+        <h3 class="text-h3 text-text-primary text-center w-full max-w-[660px]" set:html={subheading.replace(/\n/g, '<br/>')} />
+
+        <!-- Comparison columns -->
+        <div class="comparison-columns">
+          <!-- B2C Column -->
+          <div class="b2c-col">
+            <!-- Header -->
+            <div class="flex flex-col gap-[10px] relative z-[1]">
+              <h3 class="text-[28px] md:text-[39px] leading-[1.04] tracking-[-0.78px] text-text-primary">Marketing B2C</h3>
+              <div>
+                <span class="inline-flex items-center bg-separator rounded-[999px] px-[12px] py-[8px] text-[14px] md:text-[16px] leading-[1.4] tracking-[-0.16px] text-text-primary">
+                  W tym specjalizuje się większość rynku
+                </span>
+              </div>
+            </div>
+
+            <!-- Items -->
+            <div class="flex flex-col gap-[28px] relative z-[1]">
+              {b2cTexts.map((text, idx) => (
+                <div class="flex gap-[16px] items-start">
+                  <div class="flex items-center pt-px shrink-0">
+                    <div class="w-[28px] h-[28px] flex items-center justify-center">
+                      {b2cIcons[idx] === "bolt" && (
+                        <svg width="20" height="25" viewBox="0 0 20.168 24.837" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2.698 9.985L6.271 5.152C8.58 2.027 9.735.465 10.812.795c1.077.33 1.077 2.246 1.077 6.078v.362c0 1.382 0 2.073.442 2.507l.023.022c.451.425 1.17.425 2.609.425 2.589 0 3.883 0 4.32.785l.022.04c.413.797-.337 1.811-1.835 3.839l-3.573 4.833c-2.31 3.125-3.464 4.687-4.541 4.357-1.078-.33-1.078-2.246-1.078-6.078v-.361c0-1.382 0-2.073-.442-2.507l-.023-.022c-.451-.425-1.17-.425-2.609-.425-2.589 0-3.883 0-4.321-.785l-.021-.04c-.413-.797.336-1.811 1.835-3.839Z" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                      {b2cIcons[idx] === "profile" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="11.25" stroke="#7B7B7B" stroke-width="1.5"/>
+                          <circle cx="12" cy="9" r="3" stroke="#7B7B7B" stroke-width="1.5"/>
+                          <path d="M18 20c0-3.314-2.686-5-6-5s-6 1.686-6 5" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      )}
+                      {b2cIcons[idx] === "emoji-blink" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="11.25" stroke="#7B7B7B" stroke-width="1.5"/>
+                          <path d="M14 9h2.5" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <circle cx="8.5" cy="9" r="0.75" fill="#7B7B7B"/>
+                          <path d="M8.5 14h7" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      )}
+                      {b2cIcons[idx] === "dot-arrow" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="4" cy="12" r="2" fill="#7B7B7B"/>
+                          <path d="M10 12h10M16 8l4 4-4 4" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                      {b2cIcons[idx] === "fingerprint" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 3.5A9.96 9.96 0 0 1 12 2c5.523 0 10 4.477 10 10v2" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M2 12c0-2.4.846-4.604 2.257-6.328" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M8.5 6.2A6.5 6.5 0 0 1 18.5 12v2" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M5.5 12a6.5 6.5 0 0 1 2.05-4.75" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M12 8.5a3.5 3.5 0 0 1 3.5 3.5v5" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M8.5 12a3.5 3.5 0 0 1 1.2-2.64" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M12 12v6.5" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M5.5 17A10 10 0 0 0 8.5 21" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      )}
+                      {b2cIcons[idx] === "emoji-happy" && (
+                        <svg width="24" height="24" viewBox="0 0 24.833 24.833" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.75 8.917h2.333M7.75 8.917h2.333M24.083 12.417c0 6.443-5.223 11.666-11.667 11.666C5.973 24.083.75 18.86.75 12.417.75 5.973 5.973.75 12.417.75c6.443 0 11.666 5.223 11.666 11.667zM10.083 13.583h4.667v3.5c0 .778-.467 2.334-2.333 2.334-1.867 0-2.334-1.556-2.334-2.334v-3.5z" stroke="#7B7B7B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <p class="text-[18px] md:text-[20px] leading-[1.45] tracking-[-0.1px] text-text-primary">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <!-- White corner square bottom-left -->
+            <div class="absolute bottom-0 left-0 w-[58.721px] h-[58.721px] bg-bg-light max-md:hidden"></div>
+          </div>
+
+          <!-- B2B Column -->
+          <div class="b2b-col">
+            <!-- Decorative background -->
+            <div class="b2b-col__bg">
+              <img
+                src="/images/b2b-bg-image.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                class="b2b-col__image"
+              />
+              <div class="b2b-col__gradient"></div>
+              <div class="b2b-col__ellipse1"></div>
+              <div class="b2b-col__ellipse2"></div>
+            </div>
+
+            <!-- Header -->
+            <div class="flex flex-col gap-[10px] relative">
+              <h3 class="text-[28px] md:text-[39px] leading-[1.04] tracking-[-0.78px] text-text-accent-light">Marketing B2B</h3>
+              <div>
+                <span class="inline-flex items-center gap-[8px] bg-bg-primary-hover rounded-[999px] px-[12px] py-[8px] text-[14px] md:text-[16px] leading-[1.4] tracking-[-0.16px] text-text-accent-light">
+                  <img src="/images/icon-b2b-badge-flag.svg" alt="" loading="lazy" decoding="async" class="w-[28px] h-[14px]" />
+                  W tym się specjalizujemy
+                </span>
+              </div>
+            </div>
+
+            <!-- Items -->
+            <div class="flex flex-col gap-[28px] relative">
+              {b2bTexts.map((text, idx) => (
+                <div class="flex gap-[16px] items-start">
+                  <div class="flex items-center pt-px shrink-0">
+                    <div class="w-[28px] h-[28px] flex items-center justify-center">
+                      {b2bIcons[idx] === "slow-mode" && (
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22.407 16.547h3.31c.617 0 1.127-.481 1.164-1.097l.076-1.274a2.96 2.96 0 0 0-2.329-3.473H20.866M5.255 16.545c-1.996 0-3.134-.771-3.798-1.917-.384-.663.191-1.407.958-1.407h3.464M17.231 18.193c.525 2.029 1.12 2.717 1.63 2.941 2.06 0 4.751.415 4.205-1.241-2.96-8.985-2.415-15-9.624-15-7.209 0-6.716 6.014-9.677 14.998-.546 1.657 2.146 1.241 4.205 1.241.51-.224 1.106-.912 1.63-2.941M22.613 16.547c-1.162.588-4.63 1.765-9.202 1.765-4.573 0-8.04-1.178-9.203-1.767" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                      {b2bIcons[idx] === "community" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="8" r="3" stroke="#DBADFF" stroke-width="1.5"/>
+                          <circle cx="5" cy="11" r="2" stroke="#DBADFF" stroke-width="1.5"/>
+                          <circle cx="19" cy="11" r="2" stroke="#DBADFF" stroke-width="1.5"/>
+                          <path d="M8 18c0-2.21 1.79-4 4-4s4 1.79 4 4" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M2 18c0-1.657 1.343-3 3-3" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round"/>
+                          <path d="M22 18c0-1.657-1.343-3-3-3" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                      )}
+                      {b2bIcons[idx] === "brain" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 3a4.5 4.5 0 0 0-4.5 4.5c0 1-.5 2-1.5 2.5a4 4 0 0 0-2 3.5c0 1.5.8 2.8 2 3.5.5.3 1 1 1 1.5V20h4v-2" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 3a4.5 4.5 0 0 1 4.5 4.5c0 1 .5 2 1.5 2.5a4 4 0 0 1 2 3.5c0 1.5-.8 2.8-2 3.5-.5.3-1 1-1 1.5V20h-4v-2" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 3v17" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round"/>
+                          <circle cx="17" cy="5" r="1.5" stroke="#DBADFF" stroke-width="1.5"/>
+                          <path d="M17 6.5V8" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round"/>
+                          <circle cx="8" cy="21" r="1" stroke="#DBADFF" stroke-width="1.5"/>
+                          <circle cx="16" cy="21" r="1" stroke="#DBADFF" stroke-width="1.5"/>
+                        </svg>
+                      )}
+                      {b2bIcons[idx] === "map" && (
+                        <svg width="22" height="22" viewBox="0 0 22.5 22.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M19.417 14.75L21.75 21.75H3.083L.75 14.75M19.417 14.75L21.75 7.75M19.417 14.75H.75M21.75 7.75 19.417.75H.75L3.083 7.75M21.75 7.75H3.083M3.083 7.75.75 14.75" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                      {b2bIcons[idx] === "shop" && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.5 11v9.5h17V11" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <rect x="9.5" y="14" width="5" height="6.5" rx="0.5" stroke="#DBADFF" stroke-width="1.5"/>
+                          <path d="M2.5 4h4.25L8 9.5c0 1.38-1.12 2.5-2.5 2.5S3 10.88 3 9.5" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M6.75 4h5.25V9.5c0 1.38-1.12 2.5-2.5 2.5s-2.5-1.12-2.5-2.5" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12 4h5.25L16 9.5c0 1.38-1.12 2.5-2.5 2.5S11 10.88 11 9.5" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M17.25 4h4.25L21 9.5c0 1.38-1.12 2.5-2.5 2.5S16 10.88 16 9.5" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                      {b2bIcons[idx] === "star" && (
+                        <svg width="24" height="24" viewBox="0 0 24.834 24.833" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.096 4.726c1.478-2.65 2.217-3.976 3.321-3.976 1.105 0 1.844 1.326 3.322 3.976l.382.686c.42.753.63 1.13.957 1.379.328.248.735.34 1.551.525l.742.168c2.87.65 4.305.974 4.646 2.072.341 1.097-.637 2.241-2.593 4.529l-.506.592c-.556.65-.834.975-.959 1.377-.125.402-.083.836.001 1.703l.077.79c.295 3.052.443 4.578-.45 5.257-.894.678-2.238.06-4.924-1.177l-.695-.32c-.764-.352-1.146-.528-1.55-.528-.405 0-.787.176-1.55.528l-.695.32c-2.687 1.237-4.03 1.855-4.924 1.177-.894-.678-.746-2.205-.45-5.257l.076-.79c.084-.866.126-1.3.001-1.702-.125-.402-.403-.727-.959-1.377l-.506-.592C1.454 11.797.476 10.653.817 9.556c.342-1.098 1.776-1.422 4.646-2.072l.743-.168c.815-.185 1.223-.277 1.55-.525.328-.249.538-.625.958-1.379l.382-.686z" stroke="#DBADFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <p class="text-[18px] md:text-[20px] leading-[1.45] tracking-[-0.1px] text-text-light">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <!-- White corner square top-right -->
+            <div class="absolute top-0 right-0 w-[58.721px] h-[58.721px] bg-bg-light max-md:hidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .molecule-bg {
+    position: absolute;
+    top: -349.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1216px;
+    height: 1187px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .molecule-bg__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: moleculeRotate 30s linear infinite;
+  }
+
+  .molecule-bg__v {
+    position: absolute;
+    top: 0;
+    left: 26.33%;
+    right: 26.33%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .molecule-bg__h {
+    position: absolute;
+    top: 25.75%;
+    bottom: 25.75%;
+    left: 0;
+    right: 0;
+    width: 575.639px;
+    height: 1216px;
+    margin: auto;
+    transform: rotate(-90deg);
+    object-fit: contain;
+  }
+
+  @keyframes moleculeRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .comparison-columns {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .b2c-col {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--color-bg-secondary);
+    padding: 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 128px;
+  }
+
+  .b2b-col {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: var(--color-bg-primary);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 128px;
+  }
+
+  .b2b-col__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .b2b-col__image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 839.52px;
+    height: 279.84px;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+  }
+
+  .b2b-col__gradient {
+    position: absolute;
+    top: 199px;
+    left: 0;
+    right: 0;
+    height: 81px;
+    background: linear-gradient(to bottom, rgba(20, 16, 30, 0), #14101e);
+  }
+
+  .b2b-col__ellipse1 {
+    position: absolute;
+    width: 1876px;
+    height: 1875px;
+    left: 739px;
+    top: -538px;
+    transform: translate(-50%, -50%) rotate(15deg);
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(151, 29, 246, 0) 0%,
+      rgba(151, 29, 246, 0) 85%,
+      rgba(151, 29, 246, 0.3) 100%
+    );
+  }
+
+  .b2b-col__ellipse2 {
+    position: absolute;
+    width: 1949px;
+    height: 1948px;
+    left: 828px;
+    top: -508px;
+    transform: translate(-50%, -50%) rotate(15deg);
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(151, 29, 246, 0) 0%,
+      rgba(151, 29, 246, 0) 60%,
+      rgba(151, 29, 246, 0.3) 100%
+    );
+  }
+
+  @media (max-width: 768px) {
+    .molecule-bg {
+      display: none;
+    }
+
+    .comparison-columns {
+      flex-direction: column;
+    }
+
+    .b2c-col,
+    .b2b-col {
+      padding: 28px 20px 36px;
+      gap: 40px;
+    }
+
+    .b2b-col__image {
+      width: 100%;
+      left: 0;
+      transform: none;
+    }
+
+    .b2b-col__ellipse1,
+    .b2b-col__ellipse2 {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .molecule-bg__inner {
+      animation-play-state: paused;
+    }
+  }
+</style>

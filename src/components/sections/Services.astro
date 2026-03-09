@@ -1,0 +1,164 @@
+---
+import { reader } from '../../lib/keystatic';
+
+interface Props {}
+
+const data = await reader.singletons.services.read();
+
+const sectionHeading = data?.sectionHeading ?? 'Jakiej usługi potrzebuje Twoja firma?';
+const ctaHeading = data?.ctaHeading ?? 'Zapytaj nas o usługi marketingowe dla Twojej firmy';
+const ctaDescription = data?.ctaDescription ?? 'Bezpłatna konsultacja to 15 minut, które możesz wykorzystać na skonsultowanie działań marketingowych i poznanie kierunku do pozyskiwania lepszych leadów.';
+const ctaButtonText = data?.ctaButtonText ?? 'Umów bezpłatną konsultację';
+const ctaButtonHref = data?.ctaButtonHref ?? '/konsultacja';
+
+const defaultCategories = [
+  {
+    title: "Strategia i wizerunek",
+    description: "Wyspecjalizowaliśmy się w kompleksowym wdrażaniu marketingu dla firm B2B, według naszego autorskiego procesu.",
+    services: [
+      { title: "Strategia Marketingu B2B", description: "Dowiedz się jak zdobywać wartościowe leady.", buttonLabel: "Więcej o strategii B2B", href: "/uslugi/strategia-b2b" },
+    ],
+  },
+];
+
+const categories = data?.categories ?? defaultCategories;
+---
+
+<section class="w-full bg-bg-primary">
+  <!-- Photo Header -->
+  <div class="relative pt-[50px] md:pt-[96px] px-[20px] md:px-[50px] overflow-hidden">
+    <div class="mx-auto max-w-[1340px] flex gap-[50px] items-start relative">
+      <!-- Decorative Union shape (grid lines) -->
+      <img
+        src="/images/services-header-union.svg"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="absolute left-[25%] top-[8px] w-[42%] h-auto max-md:hidden pointer-events-none"
+      />
+
+      <!-- Heading -->
+      <div class="flex-1 min-w-0 pt-[50px] pb-[80px] max-md:pb-[40px]">
+        <h2 class="text-h2 text-text-light" set:html={sectionHeading.replace(/\n/g, '<br/>')} />
+      </div>
+
+      <!-- Masked photo -->
+      <div class="flex-1 min-w-0 relative max-md:hidden">
+        <div class="services-header__photo-wrap">
+          <img
+            src="/images/services-header-photo.png"
+            alt="Zespół"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Grid -->
+  <div class="px-[20px] md:px-[50px] py-[60px] md:py-[120px]">
+    <div class="mx-auto max-w-[1340px] flex flex-col gap-[50px]">
+      {categories.map((cat) => (
+        <div class="flex flex-col">
+          <!-- Category Header -->
+          <div class="bg-bg-primary-hover border-t-[3px] border-bg-accent-light p-[16px] md:p-[30px]">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4">
+              <h3 class="text-[22px] md:text-h3 text-text-accent-light shrink-0 leading-[1.08]">{cat.title}</h3>
+              <p class="text-[14px] md:text-paragraph text-text-light md:max-w-[612px] leading-[1.6]">{cat.description}</p>
+            </div>
+          </div>
+
+          <!-- Service Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px">
+            {cat.services.map((service) => (
+              <div class="bg-bg-light flex flex-col justify-between pt-[30px] pb-[20px] px-[16px] md:pt-[60px] md:pb-[28px] md:px-[28px] overflow-hidden">
+                <div class="flex flex-col gap-[30px]">
+                  <!-- Title + Arrow -->
+                  <a href={service.href} class="inline-flex items-start gap-[4px] group">
+                    <span class="text-header-m text-text-primary">{service.title}</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 shrink-0 mt-px">
+                      <path d="M4 12H20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M12 4L20 12L12 20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+
+                  <!-- Separator -->
+                  <div class="w-full h-px bg-separator"></div>
+
+                  <!-- Description -->
+                  <p class="text-paragraph text-text-primary leading-[1.6]">{service.description}</p>
+                </div>
+
+                <!-- Button -->
+                <a
+                  href={service.href}
+                  class="mt-[30px] md:mt-[64px] inline-flex items-center justify-center gap-[10px] w-full border border-bg-accent-light rounded-[300px] px-[14px] py-[10px] md:px-[22px] md:py-[12px] text-[14px] md:text-[16px] text-nav-link text-text-primary hover:bg-bg-secondary transition-colors text-center"
+                >
+                  {service.buttonLabel}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 shrink-0">
+                    <path d="M4 12H20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 4L20 12L12 20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- CTA Block -->
+  <div class="px-[20px] md:px-[50px] pt-[24px] pb-[60px] md:pb-[120px]">
+    <div class="mx-auto max-w-[1340px]">
+      <div class="bg-bg-accent overflow-hidden p-[24px] md:p-[50px] flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
+        <!-- Left: avatar + text -->
+        <div class="flex flex-col sm:flex-row items-center gap-[24px] md:gap-[50px]">
+          <div class="w-[100px] h-[100px] md:w-[156px] md:h-[156px] rounded-full overflow-hidden shrink-0 bg-white">
+            <img
+              src="/images/person-photo.png"
+              alt="Konsultant"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover object-[62%_15%]"
+            />
+          </div>
+          <div class="flex flex-col gap-[16px] md:gap-[30px] md:max-w-[723px] text-center sm:text-left">
+            <h3 class="text-[22px] md:text-h3 text-text-light leading-[1.08]">{ctaHeading}</h3>
+            <p class="text-[14px] md:text-paragraph text-text-light leading-[1.5]">{ctaDescription}</p>
+          </div>
+        </div>
+
+        <!-- Right: button -->
+        <a
+          href={ctaButtonHref}
+          class="inline-flex items-center justify-center gap-[10px] bg-bg-light border border-bg-accent rounded-[300px] px-[16px] py-[10px] md:px-[22px] md:py-[12px] text-[14px] md:text-[16px] text-nav-link text-text-primary hover:bg-bg-secondary transition-colors whitespace-nowrap shrink-0 w-full sm:w-auto"
+        >
+          {ctaButtonText}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6">
+            <path d="M4 12H20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 4L20 12L12 20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-header__photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 653 / 329;
+    mask-image: url('/images/services-header-mask-clean.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url('/images/services-header-mask-clean.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+</style>

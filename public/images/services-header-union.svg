@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 559.338 380.4" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Union" opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M277.018 0H278.018V203.908L559.338 203.908V204.908L278.018 204.908V292.98H380.4V293.98H278.018V380.4H277.018V293.98L178.639 293.98V380.4H177.639V293.98H135.562V292.98H177.639V204.908L89.6367 204.908V257.191H88.6367V204.908H70.5879V203.908H88.6367V105.523H0V104.523H88.6367L88.6367 0.000976519L89.6367 0.000976562L89.6367 104.523H177.639V69.998H178.639V104.523H220.449V105.523H178.639L178.639 203.908H277.018V0ZM177.639 105.523H89.6367V203.908L177.639 203.908L177.639 105.523ZM178.639 204.908H277.018V292.98L178.639 292.98V204.908Z" fill="url(#paint0_linear_11007_191285)"/>
+<defs>
+<linearGradient id="paint0_linear_11007_191285" x1="190.359" y1="54.44" x2="190.359" y2="380.4" gradientUnits="userSpaceOnUse">
+<stop stop-color="#14101E"/>
+<stop offset="0.5" stop-color="#DBADFF"/>
+<stop offset="1" stop-color="#14101E"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,144 @@
+---
+interface Props {}
+---
+
+<section class="team-photo">
+  <div class="team-photo__container">
+    <!-- Layer 1: Background photo (full office scene) -->
+    <div class="team-photo__bg">
+      <img
+        src="/images/team-photo-bg.png"
+        alt="Zespół AdWise w biurze"
+        loading="lazy"
+        decoding="async"
+        class="team-photo__bg-img"
+      />
+    </div>
+
+    <!-- Layer 2: Geometric purple shapes overlay -->
+    <img
+      src="/images/geometric-overlay.svg"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="team-photo__geometric"
+    />
+
+    <!-- Layer 3: White corner shapes -->
+    <img
+      src="/images/geometric-union.svg"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="team-photo__union team-photo__union--tl"
+    />
+    <img
+      src="/images/geometric-union.svg"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="team-photo__union team-photo__union--br"
+    />
+
+    <!-- Layer 4: Cut-out people (on top of geometric shapes) -->
+    <div class="team-photo__people">
+      <img
+        src="/images/team-photo-masked.png"
+        alt="Zespół AdWise"
+        loading="lazy"
+        decoding="async"
+        class="team-photo__people-img"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-photo {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* 1440 × 760 base — using aspect-ratio so children percentage sizes work */
+  .team-photo__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440 / 760;
+  }
+
+  /* Layer 1: Background photo */
+  .team-photo__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .team-photo__bg-img {
+    position: absolute;
+    /* Figma: top: -0.08%, height: 126.33% of 760 = ~960px */
+    top: -0.08%;
+    left: 0;
+    width: 100%;
+    height: 126.33%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Layer 2: Geometric SVG overlay
+     Figma: 2509.1×1414px at left:-381, top:-352.19 within 1440×760 */
+  .team-photo__geometric {
+    position: absolute;
+    left: -26.458%;    /* -381 / 1440 */
+    top: -46.341%;     /* -352.19 / 760 */
+    width: 174.243%;   /* 2509.1 / 1440 */
+    height: 186.053%;  /* 1414 / 760 */
+    max-width: none;
+    pointer-events: none;
+  }
+
+  /* Layer 3: White union corner shapes
+     Figma: 293×238px */
+  .team-photo__union {
+    position: absolute;
+    pointer-events: none;
+    width: 20.347%;    /* 293 / 1440 */
+    height: 31.316%;   /* 238 / 760 */
+    max-width: none;
+  }
+
+  /* Top-left: Figma left:-60, top:-106.19 */
+  .team-photo__union--tl {
+    left: -4.167%;     /* -60 / 1440 */
+    top: -13.972%;     /* -106.19 / 760 */
+  }
+
+  /* Bottom-right: Figma left:1198, top:640.81 */
+  .team-photo__union--br {
+    left: 83.194%;     /* 1198 / 1440 */
+    top: 84.317%;      /* 640.81 / 760 */
+  }
+
+  /* Layer 4: Cut-out people on top */
+  .team-photo__people {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .team-photo__people-img {
+    position: absolute;
+    top: -0.08%;
+    left: 0;
+    width: 100%;
+    height: 126.33%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Mobile: keep section visible but allow taller ratio */
+  @media (max-width: 768px) {
+    .team-photo__container {
+      aspect-ratio: 1440 / 760;
+    }
+  }
+</style>

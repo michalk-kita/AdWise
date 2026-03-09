@@ -1,0 +1,366 @@
+---
+interface Props {}
+
+const steps = [
+  {
+    number: "1",
+    title: "Bezpłatna\nkonsultacja",
+    description:
+      "Na początku członek naszego zespołu zapyta Cię o Twoje cele i wstępnie przeanalizuje dotychczasowe działania.",
+  },
+  {
+    number: "2",
+    title: "Plan\nmarketingowy",
+    description:
+      "Na tym etapie konsultant opracowuje lejek marketingowy i/lub strukturę strony, dopasowane do potrzeb firmy, budżetu oraz buyer persony.",
+  },
+  {
+    number: "3",
+    title: "Wycena i harmonogram",
+    description:
+      "Przedstawiamy kosztorys dostosowany do działań oraz przeznaczonego budżetu, a także opracowujemy harmonogram prac na najbliższe 3 miesiące.",
+  },
+  {
+    number: "4",
+    title: "Twoja\ndecyzja",
+    description:
+      "Mając komplet materiałów, możesz podjąć dobrą decyzję dla Twojej firmy.",
+  },
+];
+---
+
+<section class="w-full">
+  <!-- Top: White area with header + steps -->
+  <div class="bg-bg-light">
+    <!-- Header -->
+    <div class="pt-[60px] md:pt-[120px] pb-[40px] md:pb-[80px] px-[20px] md:px-[50px]">
+      <div class="flex flex-col gap-[30px] items-center text-center max-w-[660px] mx-auto">
+        <h2 class="text-h2 text-text-primary">
+          Jasny plan działania, konkretne cele<br />i wymierne efekty
+        </h2>
+        <p class="text-paragraph text-text-primary leading-[1.5]">
+          Współpraca z AdWise to kilka kluczowych etapów, które prowadzą Twoją firmę prosto do wyznaczonego celu.
+        </p>
+      </div>
+    </div>
+
+    <!-- Process steps -->
+    <div class="px-[20px] md:px-[50px] pb-[80px]">
+      <div class="process-steps mx-auto max-w-[1340px]">
+        <!-- Dashed line connecting circles -->
+        <div class="process-steps__line" aria-hidden="true"></div>
+
+        <!-- Steps -->
+        <div class="process-steps__grid">
+          {steps.map((step) => (
+            <div class="flex flex-col gap-[20px] items-center text-center">
+              <div class="process-steps__circle">
+                <span>{step.number}</span>
+              </div>
+              <h3 class="text-h3 text-text-primary whitespace-pre-line">{step.title}</h3>
+              <p class="text-paragraph text-text-primary leading-[1.5]">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom frame: 1440×568, white top → purple from y:148 -->
+  <div class="process-frame">
+    <!-- Screenshot strip: y:96, h:92, centered 1340px -->
+    <div class="process-frame__strip">
+      <img
+        src="/app_images.png"
+        alt="Narzędzia używane w procesie współpracy"
+        loading="lazy"
+        decoding="async"
+        class="h-full w-auto max-w-none"
+      />
+    </div>
+
+    <!-- Purple CTA: 1340px centered, NOT full-width -->
+    <div class="process-frame__cta-wrapper">
+      <div class="process-frame__cta">
+        <!-- Grid pattern: absolute, 8px from CTA top, 120px tall -->
+        <div class="process-frame__grid" aria-hidden="true"></div>
+
+        <!-- Line with arrow -->
+        <div class="process-frame__line" aria-hidden="true">
+          <div class="process-frame__line-inner"></div>
+          <svg width="8" height="16" viewBox="0 0 8 16" fill="none" class="shrink-0">
+            <path d="M0 0L8 8L0 16" stroke="white" stroke-width="1"/>
+          </svg>
+        </div>
+
+        <!-- Text + button -->
+        <div class="process-frame__content">
+          <h3 class="process-frame__heading">
+            Poznaj szczegóły całego procesu współpracy<br />i zobacz, jak na tym skorzystasz
+          </h3>
+          <a
+            href="/proces"
+            class="process-frame__button"
+          >
+            Poznaj pełen proces
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="shrink-0">
+              <path d="M4 12H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 4L20 12L12 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- White squares at CTA bottom corners -->
+        <div class="process-frame__square process-frame__square--white process-frame__square--bl" aria-hidden="true"></div>
+        <div class="process-frame__square process-frame__square--white process-frame__square--br" aria-hidden="true"></div>
+        <!-- Purple squares extending below CTA -->
+        <div class="process-frame__square process-frame__square--accent process-frame__square--bl-below" aria-hidden="true"></div>
+        <div class="process-frame__square process-frame__square--accent process-frame__square--br-below" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Process Steps ===== */
+  .process-steps {
+    position: relative;
+  }
+
+  .process-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-steps__circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .process-steps__circle span {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    line-height: 1.087;
+    color: var(--color-text-light);
+  }
+
+  /* Dashed line between circles */
+  .process-steps__line {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 0;
+    border-top: 1px dashed #7878A5;
+    z-index: 1;
+  }
+
+  /* ===== Bottom Frame (1440×568): white top → strip at y:96 → purple CTA from y:148 ===== */
+  .process-frame {
+    position: relative;
+    padding-top: 96px;
+    padding-bottom: 32px;
+    overflow-x: hidden;
+  }
+
+  /* Screenshot strip: 92px tall, centered 1340px */
+  .process-frame__strip {
+    position: relative;
+    z-index: 2;
+    max-width: 1340px;
+    height: 92px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  /* Wrapper: centers the CTA, no background */
+  .process-frame__cta-wrapper {
+    position: relative;
+    margin-top: -40px;
+    padding: 0 50px;
+  }
+
+  /* CTA container: purple bg, 1340px centered */
+  .process-frame__cta {
+    position: relative;
+    max-width: 1340px;
+    margin: 0 auto;
+    background: var(--color-bg-accent);
+    padding: 128px 64px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  /* Grid pattern: absolute, 7.81px from CTA top, 120px tall, full CTA width */
+  .process-frame__grid {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent calc(100% / 16 - 1px),
+        rgba(255, 255, 255, 0.12) calc(100% / 16 - 1px),
+        rgba(255, 255, 255, 0.12) calc(100% / 16)
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent calc(100% / 4 - 1px),
+        rgba(255, 255, 255, 0.12) calc(100% / 4 - 1px),
+        rgba(255, 255, 255, 0.12) calc(100% / 4)
+      );
+    pointer-events: none;
+  }
+
+  /* Horizontal line with arrow */
+  .process-frame__line {
+    display: flex;
+    align-items: center;
+  }
+
+  .process-frame__line-inner {
+    flex: 1;
+    height: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* CTA content: text + button */
+  .process-frame__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .process-frame__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+    letter-spacing: var(--tracking-h3);
+    color: var(--color-text-light);
+    max-width: 619px;
+  }
+
+  .process-frame__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-bg-accent);
+    border-radius: 300px;
+    padding: 12px 22px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-nav);
+    letter-spacing: var(--tracking-nav);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+
+  .process-frame__button:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  /* Decorative 32×32 squares */
+  .process-frame__square {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+  }
+
+  .process-frame__square--white {
+    background: var(--color-bg-light);
+  }
+
+  .process-frame__square--accent {
+    background: var(--color-bg-accent);
+  }
+
+  /* White square — bottom-left of CTA */
+  .process-frame__square--bl {
+    bottom: 0;
+    left: 0;
+  }
+
+  /* White square — bottom-right of CTA */
+  .process-frame__square--br {
+    bottom: 0;
+    right: 0;
+  }
+
+  /* Purple square extending below CTA — bottom-left */
+  .process-frame__square--bl-below {
+    bottom: -32px;
+    left: 0;
+  }
+
+  /* Purple square extending below CTA — bottom-right */
+  .process-frame__square--br-below {
+    bottom: -32px;
+    right: 0;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .process-steps__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 20px;
+    }
+
+    .process-steps__line {
+      display: none;
+    }
+
+    .process-frame {
+      padding-top: 48px;
+    }
+
+    .process-frame__strip {
+      height: 60px;
+      margin: 0 20px;
+    }
+
+    .process-frame__cta-wrapper {
+      margin-top: -24px;
+      padding: 0 20px;
+    }
+
+    .process-frame__cta {
+      padding: 88px 24px 48px;
+      gap: 24px;
+    }
+
+    .process-frame__grid {
+      height: 60px;
+    }
+
+    .process-frame__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .process-frame__square {
+      display: none;
+    }
+  }
+</style>

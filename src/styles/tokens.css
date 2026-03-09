@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- Font Family --- */
+  --font-heading: "Aeonik Pro", system-ui, sans-serif;
+  --font-body: "Aeonik Pro", system-ui, sans-serif;
+
+  /* --- Colors: Backgrounds --- */
+  --color-bg-light: #ffffff;
+  --color-bg-accent: #971df6;
+  --color-bg-accent-light: #dbadff;
+  --color-bg-primary: #14101e;
+  --color-bg-secondary: #f5f7fc;
+  --color-bg-accent-hover: #bb65ff;
+  --color-bg-primary-hover: #2b243c;
+  --color-bg-separator: #e1e1ec;
+
+  /* --- Colors: Text --- */
+  --color-text-light: #ffffff;
+  --color-text-accent: #971df6;
+  --color-text-accent-light: #dbadff;
+  --color-text-secondary: #f0f4fc;
+  --color-text-primary: #14101e;
+  --color-text-muted: #83828a;
+
+  /* --- Colors: Elements --- */
+  --color-separator: #e1e1ec;
+  --color-stroke: #bec5d1;
+  --color-stroke-accent: #971df6;
+  --color-separator-dark: #2b243c;
+  --color-separator-primary: #7878a5;
+  --color-grid-decor: #7b7b7b;
+
+  /* --- Colors: Base --- */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* --- Typography: Font Sizes --- */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-preheader: 14px;
+  --text-base: 16px;
+  --text-intro: 20px;
+  --text-h6: 18px;
+  --text-h5: 20px;
+  --text-h4: 22px;
+  --text-h3: 30px;
+  --text-h2: 39px;
+  --text-h1: 62px;
+  --text-header-xs: 20px;
+  --text-header-m: 22px;
+  --text-header-l: 31px;
+
+  /* --- Typography: Line Heights --- */
+  --leading-xs: 15.6px;
+  --leading-sm: 15px;
+  --leading-preheader: 16.8px;
+  --leading-base: 24px;
+  --leading-nav: 22.4px;
+  --leading-intro: 29px;
+  --leading-h6: 19.44px;
+  --leading-h5: 21.6px;
+  --leading-h4: 23.76px;
+  --leading-h3: 32.4px;
+  --leading-h2: 40.56px;
+  --leading-h1: 58.28px;
+  --leading-header-xs: 21.6px;
+  --leading-header-m: 23.76px;
+  --leading-header-l: 33.48px;
+
+  /* --- Typography: Letter Spacing --- */
+  --tracking-h1: -1.55px;
+  --tracking-h2: -0.78px;
+  --tracking-h3: -0.6px;
+  --tracking-header-l: -0.62px;
+  --tracking-header-m: -0.33px;
+  --tracking-header-xs: -0.3px;
+  --tracking-nav: -0.16px;
+  --tracking-intro: -0.1px;
+  --tracking-base: -0.04px;
+
+  /* --- Spacing --- */
+  --spacing-section: 6rem;
+  --spacing-container: 1280px;
+}

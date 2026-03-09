@@ -1,0 +1,184 @@
+---
+interface Props {}
+---
+
+<section class="w-full overflow-hidden">
+  <div class="flex h-[250px] sm:h-[350px] md:h-[496px]">
+    <!-- Left: Photo -->
+    <div class="relative flex-1 md:flex-[1070]">
+      <div class="absolute inset-0 overflow-hidden">
+        <img
+          src="/images/photo-office.png"
+          alt="Zespół w biurze"
+          class="absolute left-0 top-[-7.22%] w-full h-[143.83%] max-w-none object-cover"
+        />
+      </div>
+    </div>
+
+    <!-- Right: Purple panel with animations (hidden on small mobile) -->
+    <div class="relative hidden sm:block flex-[0_0_30%] md:flex-[370] bg-bg-accent overflow-hidden">
+
+      <!-- Half-circle (rotates 180deg) -->
+      <div class="anim__half-wrap">
+        <div class="anim__half-rotate">
+          <div class="anim__half-shape">
+            <div class="absolute top-0 bottom-0 left-1/2 right-0">
+              <img src="/images/ellipse-dark.svg" alt="" loading="lazy" decoding="async" class="block w-full h-full max-w-none" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pill / stadium shape (static rotation, circle slides inside) -->
+      <div class="anim__pill-wrap">
+        <div class="anim__pill-rotate">
+          <div class="anim__pill-shape">
+            <!-- Ghost trail outlines -->
+            <div class="anim__trail anim__trail--1"></div>
+            <div class="anim__trail anim__trail--2"></div>
+            <div class="anim__trail anim__trail--3"></div>
+            <div class="anim__trail anim__trail--4"></div>
+            <!-- Dark circle that slides -->
+            <div class="anim__circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== Half-circle: rotates from -30deg to 150deg (180° swing) ===== */
+  .anim__half-wrap {
+    position: absolute;
+    left: -119.86px;
+    top: 187.12px;
+    width: 378.069px;
+    height: 378.069px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .anim__half-rotate {
+    flex: none;
+    animation: halfRotate 5s ease-in-out infinite;
+  }
+
+  .anim__half-shape {
+    position: relative;
+    width: 276.765px;
+    height: 276.765px;
+  }
+
+  @keyframes halfRotate {
+    0%, 10% {
+      transform: rotate(-30deg);
+    }
+    45%, 55% {
+      transform: rotate(150deg);
+    }
+    90%, 100% {
+      transform: rotate(-30deg);
+    }
+  }
+
+  /* ===== Pill shape with sliding circle ===== */
+  .anim__pill-wrap {
+    position: absolute;
+    left: 49.62px;
+    top: -41.08px;
+    width: 456.609px;
+    height: 578.167px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .anim__pill-rotate {
+    flex: none;
+    transform: rotate(-30deg);
+  }
+
+  .anim__pill-shape {
+    position: relative;
+    width: 212.703px;
+    height: 544.805px;
+    background: #f3f4f6;
+    border-radius: 106px;
+    overflow: hidden;
+  }
+
+  /* Dark circle that slides top → bottom → top */
+  .anim__circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: var(--color-bg-primary);
+    animation: circleSlide 5s ease-in-out infinite;
+  }
+
+  @keyframes circleSlide {
+    0%, 10% {
+      top: 6px;
+    }
+    45%, 55% {
+      top: 338px;
+    }
+    90%, 100% {
+      top: 6px;
+    }
+  }
+
+  /* Ghost trail circles — visible only when circle has passed */
+  .anim__trail {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: 1px solid rgba(180, 180, 190, 0.4);
+    background: transparent;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .anim__trail--1 { top: 72px; animation: trail1 5s ease-in-out infinite; }
+  .anim__trail--2 { top: 138px; animation: trail2 5s ease-in-out infinite; }
+  .anim__trail--3 { top: 204px; animation: trail3 5s ease-in-out infinite; }
+  .anim__trail--4 { top: 270px; animation: trail4 5s ease-in-out infinite; }
+
+  /* Each trail appears instantly when circle passes it, disappears instantly on return */
+  @keyframes trail1 {
+    0%, 14% { opacity: 0; }
+    15%, 85% { opacity: 1; }
+    86%, 100% { opacity: 0; }
+  }
+  @keyframes trail2 {
+    0%, 20% { opacity: 0; }
+    21%, 79% { opacity: 1; }
+    80%, 100% { opacity: 0; }
+  }
+  @keyframes trail3 {
+    0%, 26% { opacity: 0; }
+    27%, 73% { opacity: 1; }
+    74%, 100% { opacity: 0; }
+  }
+  @keyframes trail4 {
+    0%, 32% { opacity: 0; }
+    33%, 67% { opacity: 1; }
+    68%, 100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim__half-rotate,
+    .anim__circle,
+    .anim__trail {
+      animation-play-state: paused;
+    }
+  }
+</style>

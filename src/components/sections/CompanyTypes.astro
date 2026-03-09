@@ -1,0 +1,170 @@
+---
+interface Props {}
+
+const companies = [
+  {
+    icon: "shop",
+    title: "Małe firmy",
+    budget: "5 000 – 10 000",
+    paragraphs: [
+      "Współpracujemy z firmami, które dopiero rozwijają swoje działania marketingowe. Stosunkowo niewielki budżet nie musi być dużym ograniczeniem. ",
+      "Dostosowujemy wszystkie rozwiązania do możliwości danej firmy, tak aby nadal były skuteczne i przynosiły oczekiwane efekty.",
+    ],
+  },
+  {
+    icon: "city",
+    title: "Średnie firmy",
+    budget: "10 000 – 30 000",
+    paragraphs: [
+      "Firmom o ugruntowanej pozycji na rynku pomagamy w pełni wykorzystać swój potencjał i dostępne zasoby. ",
+      "Nasze strategie, dostosowane do ich specyfiki, skupiają się na efektywności oraz kompleksowym podejściu, zapewniając wymierny wzrost wyników biznesowych.",
+    ],
+  },
+  {
+    icon: "industry",
+    title: "Duże firmy",
+    budget: "Powyżej 30 000",
+    paragraphs: [
+      "Dla przedsiębiorstw z większymi budżetami tworzymy zaawansowane strategie, które uwzględniają skalę działania i różnorodność ich potrzeb.",
+      "Nasze podejście pozwala budować efektywne kampanie, uwzględniając zarówno bieżące potrzeby, jak i długofalowe cele rozwojowe.",
+    ],
+  },
+];
+---
+
+<section class="w-full bg-bg-light">
+  <!-- Heading -->
+  <div class="pt-[60px] md:pt-[120px] pb-[40px] md:pb-[80px] px-[20px] md:px-[50px] overflow-hidden">
+    <div class="flex items-center justify-center w-full">
+      <h2 class="text-h2 text-text-primary text-center max-w-[660px]">
+        Z jakimi firmami współpracujemy?
+      </h2>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="px-[20px] md:px-[50px] pb-[60px] md:pb-[120px]">
+    <div class="mx-auto max-w-[1340px] flex flex-col md:flex-row gap-[20px] items-stretch justify-center">
+      {companies.map((company) => (
+        <div class="company-card">
+          <!-- Header: icon + title -->
+          <div class="flex gap-[12px] items-center">
+            <div class="shrink-0 flex items-center p-[12px] bg-bg-primary-hover">
+              {company.icon === "shop" && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g transform="translate(2.125,10)">
+                    <path d="M0.875 0V9C0.875 10.1046 1.77043 11 2.875 11H16.875C17.9796 11 18.875 10.1046 18.875 9V0" stroke="white" stroke-width="1.75"/>
+                  </g>
+                  <g transform="translate(7.955,12.125)">
+                    <path d="M6.875 8.875V2.875C6.875 1.77043 5.97957 0.875 4.875 0.875H2.875C1.77043 0.875 0.875 1.77043 0.875 2.875V8.875" stroke="white" stroke-width="1.75" stroke-miterlimit="16"/>
+                  </g>
+                  <g transform="translate(1.049,2.125)">
+                    <path d="M7.26929 7.23918L5.57528 1.31017C5.50169 1.05259 5.26626 0.875 4.99837 0.875H0.95095L1.42626 6.57877C1.44182 6.76543 1.54328 6.93404 1.70417 7.02995C2.09344 7.26198 2.85618 7.69199 3.45095 7.875C4.46671 8.18754 5.95179 8.07481 6.79745 7.97081C7.14915 7.92755 7.36663 7.5799 7.26929 7.23918Z" stroke="white" stroke-width="1.75"/>
+                  </g>
+                  <g transform="translate(7.153,2.125)">
+                    <path d="M6.84697 7.875C7.41448 7.70038 8.1349 7.30089 8.53791 7.06307C8.72975 6.94986 8.83539 6.73603 8.81689 6.51404L8.34697 0.875H1.34697L0.877053 6.51404C0.858554 6.73603 0.964198 6.94986 1.15604 7.06307C1.55905 7.30089 2.27947 7.70038 2.84697 7.875C4.33999 8.33439 5.35395 8.33439 6.84697 7.875Z" stroke="white" stroke-width="1.75"/>
+                  </g>
+                  <g transform="translate(14.784,2.125)">
+                    <path d="M2.59175 1.31017L0.897744 7.23918C0.800396 7.5799 1.01789 7.92755 1.36959 7.97081C2.21524 8.07481 3.70032 8.18754 4.71608 7.875C5.31085 7.69199 6.07359 7.26198 6.46286 7.02995C6.62375 6.93404 6.72521 6.76543 6.74077 6.57877L7.21608 0.875H3.16866C2.90077 0.875 2.66534 1.05259 2.59175 1.31017Z" stroke="white" stroke-width="1.75"/>
+                  </g>
+                </svg>
+              )}
+              {company.icon === "city" && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g transform="translate(2.125,2.125) rotate(180,9.875,9.875)">
+                    <path d="M6.875 0.875H18.275C18.6064 0.875 18.875 1.14363 18.875 1.475V16.275C18.875 16.6064 18.6064 16.875 18.275 16.875H12.875V18.275C12.875 18.6064 12.6064 18.875 12.275 18.875H7.475C7.14363 18.875 6.875 18.6064 6.875 18.275V12.875M6.875 0.875H1.475C1.14363 0.875 0.875 1.14363 0.875 1.475V12.275C0.875 12.6064 1.14363 12.875 1.475 12.875H6.875M6.875 0.875V4.875M6.875 12.875V8.875M6.875 8.875H4.875M6.875 8.875V4.875M6.875 4.875H4.875" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <circle cx="7" cy="9" r="1" fill="white"/>
+                  <circle cx="11" cy="9" r="1" fill="white"/>
+                  <circle cx="7" cy="13" r="1" fill="white"/>
+                  <circle cx="11" cy="13" r="1" fill="white"/>
+                  <circle cx="7" cy="17" r="1" fill="white"/>
+                  <circle cx="11" cy="17" r="1" fill="white"/>
+                </svg>
+              )}
+              {company.icon === "industry" && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 21L21 21L21 12L18 12L18 16.5M18 21L18 16.5M18 21L3 21L3 17L6.5 14L10.5 16.5L14.5 14L18 16.5" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  <g transform="translate(10.125,1.125)">
+                    <path d="M7.875 8.875C7.875 7.875 6.875 6.875 4.875 6.875C4.57279 6.875 4.22998 6.875 3.87521 6.875C2.21836 6.875 0.875 5.53185 0.875 3.875V0.875" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <g transform="translate(16.125,1.125)">
+                    <path d="M4.87502 8.875C4.87502 2.875 0.875025 2.875 0.875025 2.875C0.875025 2.875 4.87502 3.375 4.87502 0.875" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+              )}
+            </div>
+            <h3 class="text-h3 text-text-primary whitespace-nowrap">{company.title}</h3>
+          </div>
+
+          <!-- Budget -->
+          <div class="flex flex-col gap-[2px]">
+            <div class="flex gap-[6px] h-[32px] items-center py-[4px]">
+              <div class="flex items-center pt-px">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g transform="translate(1.042,1.042)">
+                    <path d="M8.95833 17.2917C13.5607 17.2917 17.2917 13.5607 17.2917 8.95833C17.2917 4.35596 13.5607 0.625 8.95833 0.625C4.35596 0.625 0.625 4.35596 0.625 8.95833C0.625 13.5607 4.35596 17.2917 8.95833 17.2917Z" stroke="var(--color-text-accent)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <g transform="translate(6.875,3.958)">
+                    <path d="M5.62504 3.125C5.05421 2.55417 4.04894 2.15713 3.12504 2.13227M0.625037 8.54167C1.1621 9.25776 2.16068 9.66618 3.12504 9.70083M3.12504 2.13227C2.02577 2.10268 1.0417 2.59998 1.0417 3.95834C1.0417 6.45833 5.62504 5.20834 5.62504 7.70833C5.62504 9.1342 4.40518 9.74683 3.12504 9.70083M3.12504 2.13227V0.625M3.12504 9.70083V11.4583" stroke="var(--color-text-accent)" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </svg>
+              </div>
+              <span class="text-intro text-text-accent" style="font-feature-settings: 'case';">Budżet marketingowy</span>
+            </div>
+            <p class="company-card__budget">
+              <span>{company.budget} </span><span class="text-text-muted">zł/mies.</span>
+            </p>
+          </div>
+
+          <!-- Description -->
+          <div class="flex flex-col gap-[12px]">
+            {company.paragraphs.map((p) => (
+              <p class="text-paragraph text-text-primary leading-[1.5]">{p}</p>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .company-card {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 433px;
+    border: 1px solid var(--color-separator);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    overflow: hidden;
+  }
+
+  .company-card__budget {
+    font-family: var(--font-heading);
+    font-size: 31px;
+    line-height: 1.08;
+    letter-spacing: -0.62px;
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: 769px) {
+    .company-card {
+      flex: 1 1 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .company-card {
+      max-width: none;
+      padding: 24px;
+      gap: 24px;
+    }
+
+    .company-card__budget {
+      font-size: 26px;
+    }
+  }
+</style>

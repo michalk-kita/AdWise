@@ -1,0 +1,66 @@
+---
+import { reader } from '../../lib/keystatic';
+
+interface Props {}
+
+const data = await reader.singletons.hero.read();
+
+const preheader = data?.preheader ?? 'AGENCJA MARKETINGU B2B';
+const headline = data?.headline ?? 'Procesowo wdrażamy marketing B2B';
+const description = data?.description ?? 'Wdrażamy marketing B2B według autorskiego procesu. Analizujemy sytuację firmy, tworzymy spójny ze sprzedażą lejek marketingowy i wprowadzamy go w życie.';
+const primaryCtaText = data?.primaryCtaText ?? 'Zobacz wszystkie usługi';
+const primaryCtaHref = data?.primaryCtaHref ?? '/uslugi';
+const secondaryCtaText = data?.secondaryCtaText ?? 'Umów bezpłatną konsultację';
+const secondaryCtaHref = data?.secondaryCtaHref ?? '/konsultacja';
+const heroImage = data?.image ?? '/Mask 1.png';
+---
+
+<section class="w-full bg-bg-light">
+  <div class="mx-auto max-w-[1440px] flex flex-col md:flex-row md:items-center md:justify-between px-[20px] md:px-[50px] py-[40px] md:py-[120px] gap-8 md:gap-0">
+    <!-- Left: content -->
+    <div class="flex flex-col w-full md:max-w-[660px] shrink-0">
+      <!-- Tag + Heading group (gap 10px) -->
+      <div class="flex flex-col gap-[10px]">
+        <div>
+          <span class="inline-flex items-center rounded-[300px] bg-bg-secondary px-[10px] py-[5px] md:px-[12px] md:py-[6px]">
+            <span class="text-preheader text-text-accent">{preheader}</span>
+          </span>
+        </div>
+        <h1 class="text-h1 text-text-primary">{headline}</h1>
+      </div>
+
+      <!-- Description -->
+      <p class="text-intro text-text-primary mt-[20px] md:mt-[28px]">{description}</p>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-[8px] sm:gap-[4px] mt-[20px] md:mt-[28px]">
+        <a
+          href={primaryCtaHref}
+          class="inline-flex items-center justify-center gap-2.5 bg-[#099D45] hover:bg-[#078a3b] transition-colors rounded-full px-[16px] py-[12px] md:px-[22px] text-[14px] md:text-[16px] text-nav-link text-text-light"
+        >
+          {primaryCtaText}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6">
+            <path d="M4 12H20" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 4L20 12L12 20" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a
+          href={secondaryCtaHref}
+          class="inline-flex items-center justify-center gap-2.5 border border-bg-accent-light rounded-[300px] px-[16px] py-[12px] md:px-[22px] text-[14px] md:text-[16px] text-nav-link text-text-primary hover:bg-bg-secondary transition-colors"
+        >
+          {secondaryCtaText}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6">
+            <path d="M4 12H20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 4L20 12L12 20" stroke="#14101e" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: decorative graphic -->
+    <div class="relative w-full md:w-[580px] shrink-0">
+      <img src={heroImage} alt="" class="w-full h-auto object-contain object-center" />
+    </div>
+  </div>
+</section>

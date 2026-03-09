@@ -1,0 +1,6 @@
+dist
+build
+.vercel
+node_modules
+.astro
+.claude

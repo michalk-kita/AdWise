@@ -1,0 +1,129 @@
+{
+  "sectionHeading": "Jakiej usługi potrzebuje Twoja firma?",
+  "ctaHeading": "Zapytaj nas o usługi marketingowe dla Twojej firmy",
+  "ctaDescription": "Bezpłatna konsultacja to 15 minut, które możesz wykorzystać na skonsultowanie działań marketingowych i poznanie kierunku do pozyskiwania lepszych leadów.",
+  "ctaButtonText": "Umów bezpłatną konsultację",
+  "ctaButtonHref": "/konsultacja",
+  "categories": [
+    {
+      "title": "Strategia i wizerunek",
+      "description": "Wyspecjalizowaliśmy się w kompleksowym wdrażaniu marketingu dla firm B2B, według naszego autorskiego procesu. Zawsze analizujemy sytuację klienta, tworzymy dla niego indywidualny plan działań marketingowych i wdrażamy go w życie.",
+      "services": [
+        {
+          "title": "Strategia Marketingu B2B",
+          "description": "Dowiedz się jak zdobywać wartościowe leady dzięki dobrze opracowanej strategii marketingowej.",
+          "buttonLabel": "Więcej o strategii B2B",
+          "href": "/uslugi/strategia-b2b"
+        },
+        {
+          "title": "Lejek Marketingowy",
+          "description": "Tworzymy lejki marketingowe dopasowane do specyfiki branż B2B.",
+          "buttonLabel": "Więcej o lejkach w B2B",
+          "href": "/uslugi/lejek-marketingowy"
+        },
+        {
+          "title": "Profesjonalne strony internetowe",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o stronach B2B",
+          "href": "/uslugi/strony-internetowe"
+        },
+        {
+          "title": "Identyfikacja wizualna",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o identyfikacji w B2B",
+          "href": "/uslugi/identyfikacja-wizualna"
+        }
+      ]
+    },
+    {
+      "title": "Content & Social Media",
+      "description": "Wyspecjalizowaliśmy się w kompleksowym wdrażaniu marketingu dla firm B2B, według naszego autorskiego procesu. Zawsze analizujemy sytuację klienta, tworzymy dla niego indywidualny plan działań marketingowych i wdrażamy go w życie.",
+      "services": [
+        {
+          "title": "Video Marketing",
+          "description": "Dowiedz się jak zdobywać wartościowe leady dzięki dobrze opracowanej strategii marketingowej.",
+          "buttonLabel": "Więcej o video marketingu",
+          "href": "/uslugi/video-marketing"
+        },
+        {
+          "title": "Social Media",
+          "description": "Tworzymy lejki marketingowe dopasowane do specyfiki branż B2B.",
+          "buttonLabel": "Więcej o social media",
+          "href": "/uslugi/social-media"
+        },
+        {
+          "title": "Marketing Automation",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o automatyzacjach",
+          "href": "/uslugi/marketing-automation"
+        },
+        {
+          "title": "Content Marketing w B2B",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o content marketingu",
+          "href": "/uslugi/content-marketing"
+        }
+      ]
+    },
+    {
+      "title": "Ruch",
+      "description": "Wyspecjalizowaliśmy się w kompleksowym wdrażaniu marketingu dla firm B2B, według naszego autorskiego procesu. Zawsze analizujemy sytuację klienta, tworzymy dla niego indywidualny plan działań marketingowych i wdrażamy go w życie.",
+      "services": [
+        {
+          "title": "Płatne Kampanie",
+          "description": "Dowiedz się jak zdobywać wartościowe leady dzięki dobrze opracowanej strategii marketingowej.",
+          "buttonLabel": "Więcej o płatnych kampaniach",
+          "href": "/uslugi/platne-kampanie"
+        },
+        {
+          "title": "Pozycjonowanie",
+          "description": "Tworzymy lejki marketingowe dopasowane do specyfiki branż B2B.",
+          "buttonLabel": "Więcej o pozycjonowaniu",
+          "href": "/uslugi/pozycjonowanie"
+        },
+        {
+          "title": "Pozycjonowanie marki w LLM",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o pozycjonowaniu LLM",
+          "href": "/uslugi/pozycjonowanie-llm"
+        },
+        {
+          "title": "Narzędzia analityczne",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o analityce",
+          "href": "/uslugi/narzedzia-analityczne"
+        }
+      ]
+    },
+    {
+      "title": "Audyty marketingowe",
+      "description": "Możesz skorzystać z jednego audytu lub połączyć kilka, aby uzyskać pełniejszy obraz sytuacji w kluczowych obszarach marketingu.",
+      "services": [
+        {
+          "title": "Audyt SEO",
+          "description": "Dowiedz się jak zdobywać wartościowe leady dzięki dobrze opracowanej strategii marketingowej.",
+          "buttonLabel": "Więcej o audycie SEO",
+          "href": "/uslugi/audyt-seo"
+        },
+        {
+          "title": "Audyt GEO",
+          "description": "Tworzymy lejki marketingowe dopasowane do specyfiki branż B2B.",
+          "buttonLabel": "Więcej o audycie GEO",
+          "href": "/uslugi/audyt-geo"
+        },
+        {
+          "title": "Audyt UX",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o audycie UX",
+          "href": "/uslugi/audyt-ux"
+        },
+        {
+          "title": "Audyt Google ADS",
+          "description": "Sprawdzamy widoczność w wyszukiwarce, optymalizację treści, link building.",
+          "buttonLabel": "Więcej o Google ADS",
+          "href": "/uslugi/audyt-google-ads"
+        }
+      ]
+    }
+  ]
+}

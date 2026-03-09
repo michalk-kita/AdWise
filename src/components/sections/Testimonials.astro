@@ -1,0 +1,413 @@
+---
+interface Props {}
+
+const testimonials = [
+  {
+    text: 'Rebranding, to naprawdę trudny proces. Wymaga nowej domeny, strony, zmiany logo, SEO i tak można wymieniać w nieskończoność. ',
+    highlight: 'AdWise podeszło do zmiany jak do projektu – podzielili zadania i dzięki temu przeszliśmy przez cały rebranding suchą stopą',
+    textEnd: '. Szczerze polecam współpracę, bo nie ma dla nich rzeczy niemożliwych.',
+    name: 'Mateusz Chinczewski',
+    role: 'Właściciel Finerto',
+    avatar: '/testimonial-avatar.png',
+    logo: '/finerto-logo.svg',
+  },
+  {
+    text: 'Rebranding, to naprawdę trudny proces. Wymaga nowej domeny, strony, zmiany logo, SEO i tak można wymieniać w nieskończoność. ',
+    highlight: 'AdWise podeszło do zmiany jak do projektu – podzielili zadania i dzięki temu przeszliśmy przez cały rebranding suchą stopą',
+    textEnd: '. Szczerze polecam współpracę, bo nie ma dla nich rzeczy niemożliwych.',
+    name: 'Mateusz Chinczewski',
+    role: 'Właściciel Finerto',
+    avatar: '/testimonial-avatar.png',
+    logo: '/finerto-logo.svg',
+  },
+  {
+    text: 'Rebranding, to naprawdę trudny proces. Wymaga nowej domeny, strony, zmiany logo, SEO i tak można wymieniać w nieskończoność. ',
+    highlight: 'AdWise podeszło do zmiany jak do projektu – podzielili zadania i dzięki temu przeszliśmy przez cały rebranding suchą stopą',
+    textEnd: '. Szczerze polecam współpracę, bo nie ma dla nich rzeczy niemożliwych.',
+    name: 'Mateusz Chinczewski',
+    role: 'Właściciel Finerto',
+    avatar: '/testimonial-avatar.png',
+    logo: '/finerto-logo.svg',
+  },
+  {
+    text: 'Rebranding, to naprawdę trudny proces. Wymaga nowej domeny, strony, zmiany logo, SEO i tak można wymieniać w nieskończoność. ',
+    highlight: 'AdWise podeszło do zmiany jak do projektu – podzielili zadania i dzięki temu przeszliśmy przez cały rebranding suchą stopą',
+    textEnd: '. Szczerze polecam współpracę, bo nie ma dla nich rzeczy niemożliwych.',
+    name: 'Mateusz Chinczewski',
+    role: 'Właściciel Finerto',
+    avatar: '/testimonial-avatar.png',
+    logo: '/finerto-logo.svg',
+  },
+  {
+    text: 'Rebranding, to naprawdę trudny proces. Wymaga nowej domeny, strony, zmiany logo, SEO i tak można wymieniać w nieskończoność. ',
+    highlight: 'AdWise podeszło do zmiany jak do projektu – podzielili zadania i dzięki temu przeszliśmy przez cały rebranding suchą stopą',
+    textEnd: '. Szczerze polecam współpracę, bo nie ma dla nich rzeczy niemożliwych.',
+    name: 'Mateusz Chinczewski',
+    role: 'Właściciel Finerto',
+    avatar: '/testimonial-avatar.png',
+    logo: '/finerto-logo.svg',
+  },
+];
+---
+
+<!-- White gap before gray section -->
+<div class="testimonials-spacer"></div>
+
+<section class="testimonials">
+  <!-- Decorative grid: top-right (near arrows) -->
+  <img
+    src="/testimonials-grid-tr.svg"
+    alt=""
+    loading="lazy"
+    decoding="async"
+    class="testimonials__decor testimonials__decor--tr"
+    aria-hidden="true"
+  />
+  <!-- Decorative grid: bottom-left -->
+  <img
+    src="/testimonials-grid-bl.svg"
+    alt=""
+    loading="lazy"
+    decoding="async"
+    class="testimonials__decor testimonials__decor--bl"
+    aria-hidden="true"
+  />
+
+  <div class="testimonials__inner">
+    <!-- Header row -->
+    <div class="testimonials__header">
+      <h2 class="text-h2 text-text-primary">Co mówią o nas klienci</h2>
+      <div class="testimonials__nav">
+        <button class="testimonials__arrow testimonials__arrow--prev" aria-label="Poprzedni" data-dir="prev">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M20 12H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 20L4 12L12 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="testimonials__arrow testimonials__arrow--next" aria-label="Następny" data-dir="next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 4L20 12L12 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards carousel -->
+    <div class="testimonials__track-wrapper">
+      <div class="testimonials__track">
+        {testimonials.map((t) => (
+          <div class="testimonials__card">
+            <!-- Avatar -->
+            <div class="testimonials__avatar">
+              <img src={t.avatar} alt={t.name} width="56" height="56" loading="lazy" decoding="async" />
+            </div>
+            <!-- Quote -->
+            <div class="testimonials__quote">
+              <p><span>{t.text}</span><mark class="testimonials__highlight">{t.highlight}</mark><span>{t.textEnd}</span></p>
+            </div>
+            <!-- Footer -->
+            <div class="testimonials__footer">
+              <div class="testimonials__author">
+                <p class="testimonials__name">{t.name}</p>
+                <p class="testimonials__role">{t.role}</p>
+              </div>
+              <div class="testimonials__logo">
+                <img src={t.logo} alt="Finerto" width="87" height="20" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTestimonialsCarousel() {
+    const track = document.querySelector('.testimonials__track') as HTMLElement;
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.testimonials__card');
+    if (cards.length === 0) return;
+
+    const firstCard = cards[0] as HTMLElement;
+    const cardWidth = firstCard.offsetWidth;
+    const gap = 30;
+    const step = cardWidth + gap;
+    let currentIndex = 0;
+    const maxIndex = cards.length - 2;
+
+    function updatePosition() {
+      track.style.transform = `translateX(-${currentIndex * step}px)`;
+    }
+
+    document.querySelector('[data-dir="prev"]')?.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updatePosition();
+      }
+    });
+
+    document.querySelector('[data-dir="next"]')?.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updatePosition();
+      }
+    });
+  }
+
+  initTestimonialsCarousel();
+</script>
+
+<style>
+  /* White spacer before gray section */
+  .testimonials-spacer {
+    height: 120px;
+    background: var(--color-bg-light);
+  }
+
+  .testimonials {
+    position: relative;
+    background: var(--color-bg-secondary);
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+  /* Decorative grid SVGs */
+  .testimonials__decor {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .testimonials__decor--tr {
+    width: 793px;
+    height: 624px;
+    top: 53px;
+    left: 720px;
+  }
+
+  .testimonials__decor--bl {
+    width: 1503px;
+    height: 624px;
+    top: 590px;
+    left: -35px;
+  }
+
+  .testimonials__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* Header */
+  .testimonials__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .testimonials__nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .testimonials__arrow {
+    width: 80px;
+    height: 80px;
+    border-radius: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .testimonials__arrow:hover {
+    opacity: 0.8;
+  }
+
+  .testimonials__arrow--prev {
+    background: transparent;
+    border: 0.8px solid #e4e4e4;
+    color: var(--color-text-primary);
+  }
+
+  .testimonials__arrow--next {
+    background: var(--color-bg-primary);
+    border: 0.8px solid #e4e4e4;
+    color: var(--color-text-light);
+  }
+
+  /* Cards track */
+  .testimonials__track-wrapper {
+    overflow: visible;
+  }
+
+  .testimonials__track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Card */
+  .testimonials__card {
+    position: relative;
+    flex-shrink: 0;
+    width: 610px;
+    background: var(--color-bg-light);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Avatar */
+  .testimonials__avatar {
+    position: absolute;
+    top: -28px;
+    left: 32px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 6px solid var(--color-bg-light);
+    overflow: hidden;
+    z-index: 1;
+    background: var(--color-bg-light);
+  }
+
+  .testimonials__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Quote text */
+  .testimonials__quote {
+    padding: 48px 32px 0;
+    flex: 1;
+  }
+
+  .testimonials__quote p {
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+  }
+
+  /* Highlight: background marker style, not underline */
+  .testimonials__highlight {
+    background-color: rgba(170, 67, 251, 0.15);
+    color: inherit;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding: 2px 0;
+  }
+
+  /* Footer */
+  .testimonials__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 32px;
+    margin-top: 28px;
+    background: var(--color-bg-secondary);
+  }
+
+  .testimonials__author {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonials__name {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    line-height: 1.08;
+    letter-spacing: -0.18px;
+    color: var(--color-text-primary);
+  }
+
+  .testimonials__role {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.16px;
+    color: var(--color-text-primary);
+  }
+
+  .testimonials__logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .testimonials__logo img {
+    width: 87px;
+    height: 20px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .testimonials-spacer {
+      height: 64px;
+    }
+
+    .testimonials {
+      padding: 64px 0;
+    }
+
+    .testimonials__decor {
+      display: none;
+    }
+
+    .testimonials__inner {
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .testimonials__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .testimonials__arrow {
+      width: 56px;
+      height: 56px;
+    }
+
+    .testimonials__arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .testimonials__card {
+      width: 320px;
+    }
+
+    .testimonials__quote {
+      padding: 40px 20px 0;
+    }
+
+    .testimonials__quote p {
+      font-size: 16px;
+    }
+
+    .testimonials__footer {
+      padding: 16px 20px;
+    }
+
+    .testimonials__avatar {
+      left: 20px;
+      width: 48px;
+      height: 48px;
+      top: -24px;
+    }
+  }
+</style>
